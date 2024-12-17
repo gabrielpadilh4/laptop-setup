@@ -10,8 +10,7 @@ Before running the playbook, ensure you have the following installed on your loc
 - **Ansible Navigator**: Install Ansible Navigator from [Ansible Navigator's installation guid](https://ansible.readthedocs.io/projects/navigator/installation).
 
 ## Usage
-
-4. Run the playbook to start the environment
+Run the playbook to start the environment
    ```sh
    ansible-navigator run playbook.yml
    ```

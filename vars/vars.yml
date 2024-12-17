@@ -1,0 +1,21 @@
+packages:
+  - vim
+  - code
+  - java-1.8.0-openjdk-devel
+  - java-11-openjdk-devel
+  - java-17-openjdk-devel
+  - java-21-openjdk-devel
+maven: 
+  url: "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
+  temp_destination: /tmp/apache-maven-3.9.9-bin.tar.gz
+  destination: /opt/apache-maven-3.9.9
+gradle:
+  url: "https://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
+  temp_destination: /tmp/gradle-8.11.1-bin.zip
+  destination: /opt/gradle-8.11.1
+vscode:
+  name: vscode
+  description: Visual Studio Code
+  baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+  gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+chrome: "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
