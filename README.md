@@ -13,5 +13,5 @@ Before running the playbook, ensure you have the following installed on your loc
 
 4. Run the playbook to start the environment
    ```sh
-   ansible-navigator run playbook.yml --ask-become-pass
+   ansible-navigator run playbook.yml
    ```
