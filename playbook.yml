@@ -1,0 +1,130 @@
+---
+- name: Setup laptop
+  hosts: localhost
+  become: true
+  gather_facts: false
+  vars:
+    packages:
+      - vim
+      - code
+      - java-1.8.0-openjdk-devel
+      - java-11-openjdk-devel
+      - java-17-openjdk-devel
+      - java-21-openjdk-devel
+
+    maven: 
+      url: "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz"
+      temp_destination: /tmp/apache-maven-3.9.9-bin.tar.gz
+      destination: /opt/apache-maven-3.9.9
+
+    gradle:
+      url: "https://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
+      temp_destination: /tmp/gradle-8.11.1-bin.zip
+      destination: /opt/gradle-8.11.1
+
+    vscode:
+      name: vscode
+      description: Visual Studio Code
+      baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+      gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+
+    chrome: "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+
+  tasks:
+    - name: Install and Upgrade packages
+      block:
+
+      - name: Upgrade all packages
+        ansible.builtin.dnf:
+          name: "*"
+          use_backend: dnf
+          state: latest
+
+      - name: Enable VSCode repository
+        ansible.builtin.yum_repository:
+          name: "{{ vscode['name'] }}"
+          description: "{{ vscode['description'] }}"
+          baseurl: "{{ vscode['baseurl'] }}"
+          gpgkey: "{{ vscode['gpgkey'] }}"
+
+      - name: Install packages
+        ansible.builtin.dnf:
+          name: "{{ packages }}"
+          use_backend: dnf
+          state: latest
+
+      - name: Install Google Chrome
+        ansible.builtin.dnf:
+          name: "{{ chrome }}"
+          disable_gpg_check: true
+          state: present
+      
+      rescue:
+        - name: Failed to install or upgrade packages
+          ansible.builtin.debug:
+            msg: Failed to install or upgrade packages
+
+
+    - name: Install and configure Apache Maven
+      block:
+      - name: Download maven tarball
+        ansible.builtin.get_url:
+          url: "{{ maven['url'] }}"
+          dest: "{{ maven['temp_destination'] }}"
+
+      - name: Create maven home
+        ansible.builtin.file:
+          path: "{{ maven['destination'] }}"
+          state: directory
+
+      - name: Untar maven
+        ansible.builtin.unarchive:
+          src: "{{ maven['temp_destination'] }}"
+          dest: /opt/
+
+      - name: Set Maven Home
+        ansible.builtin.blockinfile:
+          path: /etc/profile.d/maven.sh
+          create: true
+          state: present
+          mode: '0744'
+          block: |
+            export M2_HOME={{ maven['destination'] }}
+            export MAVEN_HOME={{ maven['destination'] }}
+            export PATH=${M2_HOME}/bin:${PATH}
+
+      rescue:
+        - name: Failed to install and configure Apache Maven
+          ansible.builtin.debug:
+            msg: Failed to install and configure Apache Maven
+
+    - name: Install and configure Gradle
+      block:
+      - name: Download gradle zip
+        ansible.builtin.get_url:
+          url: "{{ gradle['url'] }}"
+          dest: "{{ gradle['temp_destination'] }}"
+
+      - name: Create Gradle home
+        ansible.builtin.file:
+          path: "{{ gradle['destination'] }}"
+          state: directory
+
+      - name: Unzip Gradle
+        ansible.builtin.unarchive:
+          src: "{{ gradle['temp_destination'] }}"
+          dest: /opt/
+
+      - name: Set Gradle Home
+        ansible.builtin.blockinfile:
+          path: /etc/profile.d/gradle.sh
+          create: true
+          state: present
+          mode: '0744'
+          block: |
+            export PATH={{ gradle['destination'] }}/bin:${PATH}
+
+      rescue:
+        - name: Failed to install and configure Gradle
+          ansible.builtin.debug:
+            msg: Failed to install and configure Gradle
