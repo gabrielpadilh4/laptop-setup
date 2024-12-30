@@ -14,3 +14,13 @@ Run the playbook to start the environment
    ```sh
    ansible-navigator run playbook.yml
    ```
+
+## Information
+
+Currently, this Ansible playbook installs and configures the following software:
+- vim
+- VScode
+- Google Chrome
+- Apache Maven
+- Gradle
+- JDK 8, 11, 17 and 21
