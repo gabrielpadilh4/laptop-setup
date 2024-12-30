@@ -18,9 +18,11 @@ Run the playbook to start the environment
 ## Information
 
 Currently, this Ansible playbook installs and configures the following software:
-- vim
-- VScode
-- Google Chrome
-- Apache Maven
-- Gradle
-- JDK 8, 11, 17 and 21
+- [Apache Maven](https://maven.apache.org/)
+- [DBeaver Community](https://dbeaver.io/)
+- [Google Chrome](https://www.google.pt/intl/en_us/chrome/)
+- [Gradle](https://gradle.org/)
+- [JDK (8, 11, 17, and 21)](https://openjdk.org/)
+- [VSCode](https://code.visualstudio.com/)
+- [vim](https://www.vim.org/)
+- [Wireshark](https://www.wireshark.org/)

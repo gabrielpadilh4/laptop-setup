@@ -33,17 +33,40 @@
           name: "{{ chrome }}"
           disable_gpg_check: true
           state: present
+
+      - name: Install DBeaver
+        ansible.builtin.dnf:
+          name: "{{ dbeaver }}"
+          disable_gpg_check: true
+          state: present
       
       rescue:
         - name: Failed to install or upgrade packages
           ansible.builtin.debug:
             msg: Failed to install or upgrade packages
 
-    - name: Configure vim editor
-      ansible.builtin.template:
-        src: templates/vimrc.j2
-        dest: ~/.vimrc
-      become: false
+    - name: Setup vim editor
+      block:
+      - name: Add configuration
+        ansible.builtin.template:
+          src: templates/vimrc.j2
+          dest: ~/.vimrc
+        become: false
+
+      - name: Add EDITOR variable and LESS options
+        ansible.builtin.blockinfile:
+          path: /etc/profile.d/vim.sh
+          create: true
+          state: present
+          mode: '0744'
+          block: |
+            export EDITOR=/usr/bin/vim
+            export LESS="-X"
+
+      rescue:
+        - name: Failed setup vim editor
+          ansible.builtin.debug:
+            msg: Failed setup vim editor
 
     - name: Install and configure Apache Maven
       block:
