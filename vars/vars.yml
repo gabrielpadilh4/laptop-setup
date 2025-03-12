@@ -14,6 +14,8 @@ vscode:
   baseurl: "https://packages.microsoft.com/yumrepos/vscode"
   gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
 
+xsos_repo: "http://people.redhat.com/rsawhill/rpms/latest-rsawaroha-release.rpm"
+
 packages:
   - java-1.8.0-openjdk-devel
   - java-11-openjdk-devel
@@ -21,13 +23,17 @@ packages:
   - java-21-openjdk-devel
   - meld
   - code
+  - gnome-tweaks
   - vim
+  - virt-manager
   - wireshark
   - "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
   - "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
-  - "http://people.redhat.com/rsawhill/rpms/latest-rsawaroha-release.rpm"
+  - "https://github.com/ringcentral/ringcentral-embeddable-electron-app/releases/download/v0.4.3/ringcentral-embeddable-voice-app-0.4.3.x86_64.rpm"
+  - "https://github.com/java-decompiler/jd-gui/releases/download/v1.6.6/jd-gui-1.6.6.rpm"
   - xsos
 
 flatpak:
   - com.slack.Slack
   - io.podman_desktop.PodmanDesktop
+  - org.apache.directory.studio

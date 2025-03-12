@@ -22,6 +22,13 @@
           baseurl: "{{ vscode['baseurl'] }}"
           gpgkey: "{{ vscode['gpgkey'] }}"
 
+      - name: Install XSOS repo
+        ansible.builtin.dnf:
+          name: "{{ xsos_repo }}"
+          disable_gpg_check: true
+          use_backend: dnf
+          state: latest
+
       - name: Install DNF packages
         ansible.builtin.dnf:
           name: "{{ packages }}"
