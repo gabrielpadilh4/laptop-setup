@@ -22,24 +22,18 @@
           baseurl: "{{ vscode['baseurl'] }}"
           gpgkey: "{{ vscode['gpgkey'] }}"
 
-      - name: Install packages
+      - name: Install DNF packages
         ansible.builtin.dnf:
           name: "{{ packages }}"
+          disable_gpg_check: true
           use_backend: dnf
           state: latest
 
-      - name: Install Google Chrome
-        ansible.builtin.dnf:
-          name: "{{ chrome }}"
-          disable_gpg_check: true
-          state: present
+      - name: Update flatpak packages
+        community.general.flatpak:
+          name: "{{ flatpak }}"
+          state: latest
 
-      - name: Install DBeaver
-        ansible.builtin.dnf:
-          name: "{{ dbeaver }}"
-          disable_gpg_check: true
-          state: present
-      
       rescue:
         - name: Failed to install or upgrade packages
           ansible.builtin.debug:

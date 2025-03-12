@@ -10,10 +10,23 @@ Before running the playbook, ensure you have the following installed on your loc
 - **Ansible Navigator**: Install Ansible Navigator from [Ansible Navigator's installation guid](https://ansible.readthedocs.io/projects/navigator/installation).
 
 ## Usage
-Run the playbook to start the environment
+
+1. **Clone the Repository**
    ```sh
-   ansible-navigator run playbook.yml
+   git clone https://github.com/gabrielpadilh4/laptop-setup
+   cd laptop-setup
    ```
+
+2. Install required collections
+   ```sh
+   ansible-galaxy collection install -r collections/requirements.yml
+   ```
+
+3. Run the playbook to start the environment
+   ```sh
+   ansible-navigator run playbook.yml 
+   ```
+
 
 ## Information
 
@@ -23,6 +36,10 @@ Currently, this Ansible playbook installs and configures the following software:
 - [Google Chrome](https://www.google.pt/intl/en_us/chrome/)
 - [Gradle](https://gradle.org/)
 - [JDK (8, 11, 17, and 21)](https://openjdk.org/)
+- [Podman Desktop - Flatpak](https://podman-desktop.io/)
+- [meld](https://meldmerge.org/)
+- [Slack - Flatpak](https://slack.com/)
 - [VSCode](https://code.visualstudio.com/)
 - [vim](https://www.vim.org/)
 - [Wireshark](https://www.wireshark.org/)
+- [xsos](https://github.com/ryran/xsos)

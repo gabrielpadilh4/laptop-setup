@@ -3,10 +3,6 @@ maven:
   temp_destination: /tmp/apache-maven-3.9.9-bin.tar.gz
   destination: /opt/apache-maven-3.9.9
 
-dbeaver: "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
-
-chrome: "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
-
 gradle:
   url: "https://services.gradle.org/distributions/gradle-8.11.1-bin.zip"
   temp_destination: /tmp/gradle-8.11.1-bin.zip
@@ -23,6 +19,15 @@ packages:
   - java-11-openjdk-devel
   - java-17-openjdk-devel
   - java-21-openjdk-devel
+  - meld
   - code
   - vim
   - wireshark
+  - "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
+  - "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+  - "http://people.redhat.com/rsawhill/rpms/latest-rsawaroha-release.rpm"
+  - xsos
+
+flatpak:
+  - com.slack.Slack
+  - io.podman_desktop.PodmanDesktop
