@@ -23,6 +23,7 @@ packages:
   - java-21-openjdk-devel
   - meld
   - code
+  - openssl
   - gnome-tweaks
   - vim
   - virt-manager
