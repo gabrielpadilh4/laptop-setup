@@ -42,6 +42,7 @@ Currently, this Ansible playbook installs and configures the following software:
 - [Ring Central](https://www.ringcentral.com/apps/linux-phone)
 - [Java Decompiler](https://java-decompiler.github.io/)
 - [meld](https://meldmerge.org/)
+- [openldap-clients](https://packages.fedoraproject.org/pkgs/openldap/openldap-clients/)
 - [Slack](https://slack.com/)
 - [VSCode](https://code.visualstudio.com/)
 - [Virt Manager](https://virt-manager.org/)
