@@ -28,6 +28,7 @@ packages:
   - vim
   - virt-manager
   - wireshark
+  - podman-compose
   - "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
   - "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
   - "https://github.com/ringcentral/ringcentral-embeddable-electron-app/releases/download/v0.4.3/ringcentral-embeddable-voice-app-0.4.3.x86_64.rpm"
